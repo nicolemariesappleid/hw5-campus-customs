@@ -1,0 +1,6 @@
+fastmcp
+openai
+pydantic-ai-slim[openai,mcp]
+fastapi
+uvicorn[standard]
+playwright

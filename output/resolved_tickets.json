@@ -1,0 +1,5 @@
+{
+  "status": "pending_real_run",
+  "note": "Not generated yet: the real gpt-6-luna run has not happened (Portkey was unreachable from the build machine). Run `python scripts/full_run.py` with the backend and board running; scripts/finalize_run.py overwrites this file with the real results.",
+  "tickets": []
+}

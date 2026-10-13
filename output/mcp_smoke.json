@@ -1,0 +1,85 @@
+{
+  "server": "campus-customs",
+  "connection": ".mcp.json (stdio: python3 mcp_server/server.py)",
+  "database": "data/campus_customs_new.db",
+  "tools_listed_by_server": [
+    "check_inventory",
+    "get_lease",
+    "get_pricing"
+  ],
+  "run_at": "2026-10-13T16:16:18+00:00",
+  "all_match": true,
+  "tests": [
+    {
+      "ticket": 101,
+      "prompt": "this is problem 4. add your mcp server in this vibecoder to this project so the vibe coder can call the tools. save the connection JSON text in .mcp.json at the project root or however you save local mcp server lists. with you connected, test each of your 3 mcp tools. save the evidence in output/mcp_smoke.json . for every tool include the prompt i asked the vibe coder, the tool name, and the tool output, which must match values in data/campus_customs_new.db",
+      "tool_name": "check_inventory",
+      "arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S"
+      },
+      "tool_output": {
+        "found": true,
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "database_row": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "matches_database": true
+    },
+    {
+      "ticket": 102,
+      "prompt": "this is problem 4. add your mcp server in this vibecoder to this project so the vibe coder can call the tools. save the connection JSON text in .mcp.json at the project root or however you save local mcp server lists. with you connected, test each of your 3 mcp tools. save the evidence in output/mcp_smoke.json . for every tool include the prompt i asked the vibe coder, the tool name, and the tool output, which must match values in data/campus_customs_new.db",
+      "tool_name": "get_lease",
+      "arguments": {
+        "lease_id": 1
+      },
+      "tool_output": {
+        "found": true,
+        "id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400.0,
+        "next_due": "2026-09-02",
+        "notes": null
+      },
+      "database_row": {
+        "id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400.0,
+        "next_due": "2026-09-02",
+        "notes": null
+      },
+      "matches_database": true
+    },
+    {
+      "ticket": 103,
+      "prompt": "this is problem 4. add your mcp server in this vibecoder to this project so the vibe coder can call the tools. save the connection JSON text in .mcp.json at the project root or however you save local mcp server lists. with you connected, test each of your 3 mcp tools. save the evidence in output/mcp_smoke.json . for every tool include the prompt i asked the vibe coder, the tool name, and the tool output, which must match values in data/campus_customs_new.db",
+      "tool_name": "get_pricing",
+      "arguments": {
+        "sku": "CC-HOOD-NAVY"
+      },
+      "tool_output": {
+        "found": true,
+        "sku": "CC-HOOD-NAVY",
+        "unit_cost": 22.0,
+        "list_price": 58.0
+      },
+      "database_row": {
+        "sku": "CC-HOOD-NAVY",
+        "unit_cost": 22.0,
+        "list_price": 58.0
+      },
+      "matches_database": true
+    }
+  ]
+}

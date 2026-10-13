@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs Desk</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1d1b;--muted:#6b6a64;--line:#e2e0d8;--accent:#0f4d92;--tag:#e8eef7;--warn:#fff7e0;--warn-ink:#7a5a00}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--ink:#ecebe6;--muted:#a3a29b;--line:#34332f;--accent:#7fb0ea;--tag:#22303f;--warn:#2d2614;--warn-ink:#e6c873}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--muted);margin:0 0 18px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tabs button{font:inherit;background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;color:var(--muted);cursor:pointer}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.panel{display:none;padding-top:18px}
+.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.card h2{font-size:16px;margin:0 0 10px}
+.card h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:14px 0 6px}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0}
+.facts dt{color:var(--muted)}.facts dd{margin:0}
+ol,ul{margin:0;padding-left:20px}li{margin:3px 0}
+code{background:var(--tag);padding:1px 5px;border-radius:4px;font-size:13px}
+.pill{display:inline-block;background:var(--tag);border-radius:999px;padding:2px 10px;margin:2px 4px 2px 0;font-size:13px}
+.off{opacity:.55;text-decoration:line-through}
+.placeholder{background:var(--warn);color:var(--warn-ink);border:1px dashed currentColor;border-radius:10px;padding:16px 18px}
+.placeholder h2{font-size:16px;margin:0 0 4px;color:inherit}
+/*REFL-CSS*/.refl h2{font-size:17px;margin:22px 0 8px}.refl h2:first-of-type{margin-top:14px}.refl p,.refl li{line-height:1.6}.note{background:var(--tag);border-radius:8px;padding:12px 14px;font-size:14px}.redo{display:inline-block;background:#fff1c2;color:#7a5a00;border-radius:999px;padding:0 8px;font-size:12px;font-weight:700}.mini{border-collapse:collapse;font-size:14px;margin:6px 0 10px;width:100%}.mini th,.mini td{border-bottom:1px solid var(--line);padding:6px;text-align:left}.src li{font-size:13px}.muted-note{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Campus Customs Desk</h1>
+<p class="sub">Open tickets as of shop date 2026-08-31 · Expected vs. actual agent runs</p>
+
+<div class="tabs" role="tablist">
+  <button role="tab" data-tab="t101">Ticket 101</button>
+  <button role="tab" data-tab="t102">Ticket 102</button>
+  <button role="tab" data-tab="t103">Ticket 103</button>
+  <button role="tab" data-tab="cash">Cash</button>
+  <button role="tab" data-tab="reflection">Reflection</button>
+</div>
+
+<!-- 101 -->
+<section class="panel" id="t101" role="tabpanel">
+  <div class="card">
+    <h2>101 · Bulldog tee</h2>
+    <dl class="facts">
+      <dt>Type</dt><dd>customer_order</dd>
+      <dt>Requester</dt><dd>Tauhid Zaman</dd>
+      <dt>Request</dt><dd>1 × Classic Bulldog Tee (<code>CC-TEE-WHITE</code>), size S</dd>
+      <dt>Linked</dt><dd>Invoice 501</dd>
+      <dt>Notes</dt><dd>"Needs a tee in size S."</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Expected</h2>
+    <h3>Boss calls first, and why</h3>
+    <p>The Boss reads the ticket first, then calls <strong>Inventory</strong>. This is a customer order for one exact SKU and size, so the first question is whether that tee in size S is on the shelf.</p>
+    <h3>Expected delegations</h3>
+    <ol>
+      <li><strong>Boss</strong> does the initial read of ticket 101 and works out what it requires.</li>
+      <li><strong>Boss → Inventory:</strong> check stock of <code>CC-TEE-WHITE</code> in size S.</li>
+      <li><strong>Boss → Customer Service:</strong> handle the overdue invoice (501) linked to the ticket.</li>
+      <li>Either agent may ask another agent for help if it gets stuck.</li>
+      <li><strong>Boss</strong> does a final audit that the ticket was executed correctly.</li>
+    </ol>
+    <h3>Specialists used</h3>
+    <span class="pill">Inventory</span><span class="pill">Customer Service</span><span class="pill off">Accounting</span><span class="pill off">Facilities</span>
+    <h3>Expected MCP tools</h3>
+    <ul>
+      <li><code>get_ticket</code>: Boss's initial read</li>
+      <li><code>check_inventory</code>: Inventory, for <code>CC-TEE-WHITE</code> / S</li>
+    </ul>
+  </div>
+  <!--ACTUAL:101-->
+  <div class="placeholder">
+    <h2>Actual</h2>
+    <p>To be filled in after the agents run on ticket 101.</p>
+  </div>
+  <!--/ACTUAL:101-->
+</section>
+
+<!-- 102 -->
+<section class="panel" id="t102" role="tabpanel">
+  <div class="card">
+    <h2>102 · Rent due</h2>
+    <dl class="facts">
+      <dt>Type</dt><dd>rent_notice</dd>
+      <dt>Requester</dt><dd>Elm City Properties</dd>
+      <dt>Linked</dt><dd>Lease 1</dd>
+      <dt>Notes</dt><dd>"Email: shop rent due in 2 days."</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Expected</h2>
+    <h3>Boss calls first, and why</h3>
+    <p>The Boss reads the ticket first, then calls <strong>Accounting</strong>. Rent is a payment, so the money side comes first, followed by <strong>Facilities</strong>, which owns the lease and rent.</p>
+    <h3>Expected delegations</h3>
+    <ol>
+      <li><strong>Boss</strong> does the initial read of ticket 102 and works out what it requires.</li>
+      <li><strong>Boss → Accounting:</strong> handle the rent from the money side.</li>
+      <li><strong>Boss → Facilities:</strong> handle the rent using the lease (lease 1).</li>
+      <li>Either agent may ask another agent for help if it gets stuck.</li>
+      <li><strong>Boss</strong> does a final audit that the ticket was executed correctly.</li>
+    </ol>
+    <h3>Specialists used</h3>
+    <span class="pill">Accounting</span><span class="pill">Facilities</span><span class="pill off">Inventory</span><span class="pill off">Customer Service</span>
+    <h3>Expected MCP tools</h3>
+    <ul>
+      <li><code>get_ticket</code>: Boss's initial read</li>
+      <li><code>get_lease</code>: lease 1's rent and due date</li>
+    </ul>
+  </div>
+  <!--ACTUAL:102-->
+  <div class="placeholder">
+    <h2>Actual</h2>
+    <p>To be filled in after the agents run on ticket 102.</p>
+  </div>
+  <!--/ACTUAL:102-->
+</section>
+
+<!-- 103 -->
+<section class="panel" id="t103" role="tabpanel">
+  <div class="card">
+    <h2>103 · Bulk hoodie discount</h2>
+    <dl class="facts">
+      <dt>Type</dt><dd>price_override</dd>
+      <dt>Requester</dt><dd>Yale AI Club</dd>
+      <dt>Request</dt><dd>20 × Basic Hoodie Big Yale (<code>CC-HOOD-NAVY</code>), size M, at a bulk discount</dd>
+      <dt>Notes</dt><dd>"Student org wants 20 hoodies, size M, asking for a bulk discount."</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Expected</h2>
+    <h3>Boss calls first, and why</h3>
+    <p>The Boss reads the ticket first, then calls <strong>Inventory</strong>. Before talking price, the shop needs to know whether it has 20 hoodies in size M. Then <strong>Accounting</strong> records the margins on a discount.</p>
+    <h3>Expected delegations</h3>
+    <ol>
+      <li><strong>Boss</strong> does the initial read of ticket 103 and works out what it requires.</li>
+      <li><strong>Boss → Inventory:</strong> take inventory of <code>CC-HOOD-NAVY</code> in size M against the 20 requested.</li>
+      <li><strong>Boss → Accounting:</strong> record the margins on the bulk discount.</li>
+      <li>Either agent may ask another agent for help if it gets stuck.</li>
+      <li><strong>Boss</strong> does a final audit that the ticket was executed correctly.</li>
+    </ol>
+    <h3>Specialists used</h3>
+    <span class="pill">Inventory</span><span class="pill">Accounting</span><span class="pill off">Facilities</span><span class="pill off">Customer Service</span>
+    <h3>Expected MCP tools</h3>
+    <ul>
+      <li><code>get_ticket</code>: Boss's initial read</li>
+      <li><code>check_inventory</code>: Inventory, for <code>CC-HOOD-NAVY</code> / M</li>
+      <li><code>check_margin</code>: Accounting, to record margins on the discounted price</li>
+    </ul>
+  </div>
+  <!--ACTUAL:103-->
+  <div class="placeholder">
+    <h2>Actual</h2>
+    <p>To be filled in after the agents run on ticket 103.</p>
+  </div>
+  <!--/ACTUAL:103-->
+</section>
+
+<section class="panel" id="cash" role="tabpanel">
+  <!--CASH-->
+  <div class="placeholder"><h2>Cash</h2><p>For a later problem.</p></div>
+  <!--/CASH-->
+</section>
+
+<section class="panel" id="reflection" role="tabpanel">
+  <!--REFLECTION-->
+  <div class="card refl">
+    <div class="note"><strong>Evidence status.</strong> The real <code>gpt-6-luna</code> run has not happened yet: Portkey is blocked from the machine this was built on, so the <a href="#t101">Actual</a> sections and the <a href="#cash">Cash</a> tab are still empty. Everything below is built only on evidence that exists today: (1) the <strong>Expected</strong> plans on each ticket tab, (2) the database rows the MCP tools return, which are identical on every run, and (3) a <strong>dry run</strong> where each agent's moves were scripted (no model) to test the plumbing. Lines marked <span class="redo">re-check</span> must be updated once <code>python scripts/full_run.py</code> fills in Actual and Cash.</div>
+
+    <h2>Who Campus Customs is (and why it matters for these tickets)</h2>
+    <p>Campus Customs is a family-run shop at <strong>57 Broadway</strong>, across from Yale and two doors down from the Yale Bookstore (Barnes &amp; Noble, 77 Broadway). It began as a Yale memorabilia store in the mid-1970s, draws a lot of undergraduates because of its Broadway spot, and has grown into a screen-printing, embroidery, graphic-design and web-store business, with stores in Branford, CT and Celebration, FL. It has run its own Yale-community promotions, such as a 40%-off early-morning sale and 20% off for Yale employees. Our database is a tiny slice of that business: 4 SKUs, 3 vendors, 1 lease (the "Chapel Street shop"), and one checking account holding <strong>$3,400.00</strong> on desk date <strong>2026-08-31</strong>. That date is the start of fall term, when first-years and families are walking Broadway, which is why a size-S tee being out of stock (ticket 101) and a student club ordering 20 hoodies (ticket 103) are real stakes, not toy ones.</p>
+
+    <h2>1. How I would evaluate the agents on each ticket</h2>
+    <p>I grade each run on four things, using facts I can check against the database: <strong>(a) right facts</strong> (did the agents quote real rows rather than the ticket's wording), <strong>(b) right people</strong> (did the Boss call only the specialists the ticket needs), <strong>(c) safe money</strong> (are drafts correct and is nothing paid twice), and <strong>(d) cost</strong> (model calls and tokens for the work done).</p>
+
+    <h3>Ticket 101 — Tauhid Zaman, 1 × Classic Bulldog Tee (<code>CC-TEE-WHITE</code>) size S</h3>
+    <ul>
+      <li><strong>What a correct run has to find.</strong> <code>check_inventory</code> returns <strong>qty 0</strong> for S in Aisle B (M has 5, L 3, XL 2), so the shortfall is 1. The ticket links <strong>invoice 501</strong>: Bulldog Print Co, <strong>$840.00</strong>, "Rush reprint CC-TEE-WHITE S", due <strong>2026-08-28</strong>, so it is <strong>3 days overdue</strong> on the desk date. A strong run connects the two: the reprint Tauhid is waiting for is the very job the shop hasn't paid for.</li>
+      <li><strong>What earns full marks.</strong> Accounting drafts the $840 invoice payment (<code>prepare_payment</code>, which also confirms it isn't already paid). Inventory does <em>not</em> draft a second reprint PO, which would double-order from the same vendor. Customer Service drafts a note to Tauhid that is honest: no S on the shelf today, size M is in stock if he wants it, and no promised date beyond Bulldog Print Co's 5-day lead time.</li>
+      <li><strong>What loses marks.</strong> Promising "ships tomorrow", a duplicate PO, or a customer note that implies anything was sent. Our guardrails keep messages as drafts, but they can't catch a wrong promise inside a draft. Only the human reading it can.</li>
+      <li><span class="redo">re-check</span> Grade against the 101 tab's Actual section: was invoice 501 linked to the shortfall, and how many tokens did it take?</li>
+    </ul>
+
+    <h3>Ticket 102 — Elm City Properties, "Rent due"</h3>
+    <ul>
+      <li><strong>What a correct run has to find.</strong> <code>get_lease(1)</code> returns <strong>$2,400.00</strong> monthly rent for the Chapel Street shop, next due <strong>2026-09-02</strong>, which is exactly "2 days" after the desk date, so the email checks out. <code>find_payments</code> finds no rent payment yet, and checking ($3,400) covers it.</li>
+      <li><strong>What earns full marks.</strong> One rent draft for exactly $2,400 that would leave $1,000, with the Boss marking it as needing your approval.</li>
+      <li><strong>The cross-ticket test most runs will fail.</strong> Each ticket runs alone. The 102 run has no tool that lists <em>all</em> open bills (only <code>get_invoice</code> by id), so it can't see that invoice 501's $840 is also due. Paying both leaves <strong>$160</strong>. A great run would say so; our tools make that nearly impossible, and that's a tooling gap, not an agent failure.</li>
+      <li><span class="redo">re-check</span> In the Actual section: did the run use the lease rather than the email, and did anyone mention the other bills?</li>
+    </ul>
+
+    <h3>Ticket 103 — Yale AI Club, 20 × <code>CC-HOOD-NAVY</code> size M, bulk discount</h3>
+    <ul>
+      <li><strong>What a correct run has to find.</strong> Only <strong>8</strong> size-M hoodies are on hand, so the shortfall is <strong>12</strong>. (The shop holds 32 across all sizes: S 4, M 8, L 14, XL 6, but the club asked for M.) Pricing is $58.00 list against $22.00 cost. <code>check_margin</code> at 15% off gives <strong>$49.30</strong>, a $27.30 margin per hoodie and <strong>$546.00</strong> profit on 20. The price stays above cost all the way down to a 62% discount.</li>
+      <li><strong>What earns full marks.</strong> A specific discount backed by margin numbers, plus a restock PO for 12 from Bulldog Print Co (apparel, 5-day lead) costing <strong>12 × $22 = $264.00</strong>.</li>
+      <li><strong>Where the run gets stopped (shown in the dry run, and the numbers alone guarantee it).</strong> After 101 and 102 are approved, checking holds $160, so the $264 PO is <strong>refused</strong> at approval with "Not enough cash: 264.00 needed, 160.00 in checking." The agents can't know this ahead of time because they don't see the other tickets' pending drafts.</li>
+      <li><strong>What our app doesn't enforce.</strong> The discount itself is never recorded or approved. Only payments and POs go through the approval queue, so a run that "offers 25% off" leaves no trace in the database.</li>
+      <li><span class="redo">re-check</span> Note the actual discount chosen and whether the PO was refused on the Cash tab.</li>
+    </ul>
+
+    <h3>The finding that ties all three together</h3>
+    <p>The three drafts add up to $840 + $2,400 + $264 = <strong>$3,504</strong>, which is <strong>$104 more</strong> than the $3,400 in checking. So one bill always gets refused, and <strong>the order the tickets run in silently decides which one</strong>:</p>
+    <table class="mini">
+      <tr><th>Run order</th><th>Paid</th><th>Refused</th><th>Ending cash</th></tr>
+      <tr><td>101 → 102 → 103 (the board's order)</td><td>invoice 501, rent</td><td>hoodie PO $264</td><td>$160.00</td></tr>
+      <tr><td>101 → 103 → 102</td><td>invoice 501, PO</td><td><strong>rent $2,400</strong></td><td>$2,296.00</td></tr>
+      <tr><td>103 → 102 → 101</td><td>PO, rent</td><td>overdue invoice $840</td><td>$736.00</td></tr>
+    </table>
+    <p>The board's order happens to be the safest one: the landlord and the overdue vendor get paid, and the club order waits. But no agent chose that; it came from the ticket ids. A real shop needs the Boss to see every pending obligation at once.</p>
+
+    <h2>2. Actual vs. expected, ticket by ticket</h2>
+    <p class="muted-note">The real model run is still pending, so the model-dependent part of this comparison is marked <span class="redo">re-check</span>. Some differences are already certain, because each agent's tool permissions make the expected plan impossible as written.</p>
+    <h3>101</h3>
+    <ul>
+      <li><strong>Expected:</strong> Boss → Inventory (<code>check_inventory</code>) and Boss → Customer Service to "handle the overdue invoice".</li>
+      <li><strong>Certain difference:</strong> Customer Service's only tool is <code>get_ticket</code>, so it can't open or pay invoice 501. The invoice has to go to <strong>Accounting</strong> (<code>get_invoice</code>, <code>prepare_payment</code>), which my expected plan had sitting this ticket out. Customer Service's real job here is the note to Tauhid. The expected tool list (<code>get_ticket</code>, <code>check_inventory</code>) is also too short: a full run needs at least <code>get_invoice</code>/<code>prepare_payment</code>, and possibly <code>list_vendors</code>.</li>
+      <li><strong>Dry run:</strong> the scripted path Boss → Inventory, Accounting and Customer Service drafted the $840 payment, and approving it took checking from $3,400.00 to $2,560.00.</li>
+      <li><span class="redo">re-check</span> Did the real Boss route the invoice to Accounting on its own?</li>
+    </ul>
+    <h3>102</h3>
+    <ul>
+      <li><strong>Expected:</strong> Accounting first, then Facilities, with <code>get_lease</code>.</li>
+      <li><strong>Likely difference:</strong> the Facilities prompt tells it to confirm the lease and then <em>ask Accounting</em> to draft the payment. So the natural path is Boss → Facilities → Accounting, with Accounting reached as a second-level request rather than called first by the Boss. The rent can't be paid with <code>get_lease</code> alone; it needs <code>prepare_payment</code>, which already checks cash and past payments, so a separate <code>get_cash_balance</code> call may not appear.</li>
+      <li><strong>Dry run:</strong> Boss → Facilities (<code>get_lease</code>) → Accounting (<code>prepare_payment</code>) drafted $2,400, and approving it took checking from $2,560.00 to $160.00.</li>
+      <li><span class="redo">re-check</span> Who did the real Boss call first?</li>
+    </ul>
+    <h3>103</h3>
+    <ul>
+      <li><strong>Expected:</strong> Inventory, then Accounting, with <code>check_inventory</code> and <code>check_margin</code>.</li>
+      <li><strong>Likely difference:</strong> the right people, but more tools. Finding the shortfall of 12 should trigger <code>list_vendors</code> and <code>prepare_purchase_order</code>, which my plan didn't include. The plan also didn't predict the cash refusal, which comes from the other two tickets, not this one.</li>
+      <li><strong>Dry run:</strong> the margin was checked at $49.30, a $264 PO was drafted, and it was refused at approval with $160 left in checking.</li>
+      <li><span class="redo">re-check</span> What discount did the real run offer, and did it reorder?</li>
+    </ul>
+
+    <h2>3. What would have been simpler as one agent with tools</h2>
+    <p>Honestly, at this size <strong>all three tickets</strong> would be simpler for one agent holding the 13 MCP tools, with the same approval queue.</p>
+    <ul>
+      <li><strong>102 is a straight line:</strong> <code>get_ticket</code> → <code>get_lease</code> → <code>find_payments</code> → <code>prepare_payment</code>. With the team, every agent needs at least two model calls (one to use a tool, one to report), so Boss → Facilities → Accounting costs at least <strong>8 model calls</strong>, which is exactly what the dry run logged. One agent needs about <strong>4</strong>, and each call resends the instructions and tool list, so tokens roughly halve too.</li>
+      <li><strong>Hand-offs lose context.</strong> A helper only gets the short request string, not the conversation. On 101, Accounting gets "invoice 501 is overdue" but not "a customer is waiting on that reprint", which is the fact that makes paying it urgent. One agent keeps everything in one context.</li>
+      <li><strong>The safety doesn't come from the team.</strong> The real protections are in the tools and the human-only approve route: payments are drafts, re-checked at approval, never paid twice, and refused when cash is short. Splitting into five agents adds no protection there. Least privilege (Customer Service can't draft payments) is nice, but one agent with a draft-only toolset is just as safe.</li>
+      <li><strong>Where the team would pay off:</strong> with Campus Customs' <em>full</em> business (decoration jobs, a web store, three stores) the tool count and domain knowledge would outgrow one prompt. That's when a Production or Fulfillment specialist with its own tools earns its cost.</li>
+    </ul>
+
+    <h2>4. Three new problems this team <em>could</em> solve with today's tools</h2>
+    <ol>
+      <li><strong>The Crest Mug is out during family visits.</strong> <code>CC-MUG-CREST</code> shows <strong>0</strong> on hand in Aisle D. A ticket like "parents asking for Crest Mugs" goes Inventory (<code>check_inventory</code> → 0, <code>list_vendors</code> → <strong>Elm City Gifts</strong>, "mugs and small goods", 3-day lead) → Accounting (<code>prepare_purchase_order(2, CC-MUG-CREST, OS, 24)</code> = 24 × $3.50 = <strong>$84.00</strong>). That fits even in the $160 left after the board-order run, and Customer Service drafts a "back in about 3 days" note.</li>
+      <li><strong>A Yale-employee or early-bird promotion.</strong> Campus Customs has run 20%-off-for-Yale-employees and 40%-off early-morning sales. Accounting can price them with <code>check_margin</code> before the doors open: the Bulldog Tee at 20% off is <strong>$22.40</strong> against $8 cost ($14.40 margin), and the Yale Cap (<strong>40</strong> on hand) at 40% off is <strong>$13.20</strong> against $6 cost ($7.20 margin). The Boss can approve the promotion with margins in hand, all from the <code>pricing</code> table.</li>
+      <li><strong>A size-run question from a team or club.</strong> "Do you have hoodies for 4 smalls, 8 mediums, 6 XLs?" Inventory checks each size of <code>CC-HOOD-NAVY</code> (S 4, M 8, XL 6, which is exactly enough, and L 14 spare). Accounting quotes the group price with <code>check_margin</code>, and Customer Service drafts the reply. No money moves, so nothing waits for approval.</li>
+    </ol>
+
+    <h2>5. Three new problems this team <em>could not</em> solve, and what it would need</h2>
+    <ol>
+      <li><strong>A custom-decorated club order.</strong> Ticket 103's club will probably want <em>its own logo</em> printed on the hoodies, which is Campus Customs' core work (screen printing, embroidery, design, virtual samples). Our database has no artwork, no decoration costs, no production capacity and no job status. <em>Needed:</em> a <strong>Production agent</strong> with tools like <code>quote_decoration(method, colors, qty)</code>, <code>check_press_schedule(date)</code> and <code>create_job</code>; a <strong>Design/Proof agent</strong> that handles artwork uploads and sample approvals; and a <strong>Yale marks check</strong> for any design using Yale names or logos, against the university's trademark and licensing rules. That last one is a human sign-off, not something to automate.</li>
+      <li><strong>The cash squeeze across tickets.</strong> As shown above, $3,504 of bills meet $3,400 of cash, and ticket order decides who gets paid. The team can't see all pending obligations, has no income data (no sales or receivables tables), and can't take a <strong>deposit</strong> from the Yale AI Club before ordering. <em>Needed:</em> <code>list_open_obligations()</code>, <code>cash_forecast(days)</code> and <code>record_customer_deposit()</code> tools; a <strong>Controller agent</strong> that ranks bills (rent and overdue vendors before new stock); and a Boss that runs across all open tickets, not one at a time. All still drafts that need approval.</li>
+      <li><strong>Web orders and the other stores.</strong> Campus Customs sells online worldwide and runs stores in Branford and Celebration, FL, but our <code>inventory</code> table has one location field ("Aisle A"), no store column, no orders, and <strong>no write tools at all</strong>, so stock can't even go down when Tauhid finally buys his tee. Customer Service can draft but never send. <em>Needed:</em> an orders table and <strong>Fulfillment agent</strong> with <code>reserve_stock</code>, <code>transfer_stock(from_store, to_store)</code> and <code>create_shipment</code>; a <strong>multi-store inventory</strong> schema; and an approve-then-send outbox for customer emails, with a human clicking Send just like Approve works for money.</li>
+    </ol>
+
+    <h3>Sources</h3>
+    <ul class="src">
+      <li><a href="https://www.campuscustoms.com/">Campus Customs</a> — 57 Broadway, Branford and Celebration, FL locations; screen printing, embroidery, design, web stores; founded 1975 as a Yale memorabilia store</li>
+      <li><a href="https://news.yale.edu/2017/12/01/yale-bookstore-and-campus-customs-offering-discounts-yale-community">YaleNews (2017)</a> — Yale Bookstore at 77 Broadway; Campus Customs 40% early-morning and 20% Yale-employee discounts</li>
+      <li><a href="https://yaledailynews.com/blog/2014/11/11/university-store-offers-boutique-campus-apparel/">Yale Daily News (2014)</a> — Campus Customs on Broadway draws undergraduates; competes with the Yale Bookstore</li>
+      <li><a href="https://loveincmag.com/vendor/campus-customs/">Love Inc. (vendor profile)</a> — family-run by Joel and Jeremy Cobden; one production facility</li>
+      <li><a href="https://dailynutmeg.com/blogs/blog/new-haven-in-shirt-supply">Daily Nutmeg (2012)</a> — 57 Broadway, two doors down from the Yale Bookstore</li>
+    </ul>
+  </div>
+  <!--/REFLECTION-->
+</section>
+</div>
+
+<script>
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function show(id){
+  if(!document.getElementById(id)) id='t101';
+  tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===id));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===id));
+  history.replaceState(null,'','#'+id);
+}
+tabs.forEach(b=>b.onclick=()=>show(b.dataset.tab));
+show(location.hash.slice(1));
+window.onhashchange=()=>show(location.hash.slice(1));
+</script>
+</body>
+</html>
