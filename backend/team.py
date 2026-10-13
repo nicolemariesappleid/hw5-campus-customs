@@ -7,7 +7,7 @@
 """
 from pydantic_ai import Agent, RunContext
 from pydantic_ai.mcp import MCPToolset
-from pydantic_ai.settings import ModelSettings
+from pydantic_ai.models.openai import OpenAIChatModelSettings
 from pydantic_ai.tools import ToolDefinition
 from pydantic_ai.usage import RunUsage, UsageLimits
 
@@ -33,7 +33,9 @@ TOOLS: dict[str, set[str]] = {
 # Token guardrails
 MAX_DEPTH = 2  # Boss -> agent -> agent, no deeper
 LIMITS = UsageLimits(request_limit=20, tool_calls_limit=30, total_tokens_limit=50_000)  # per ticket, whole team
-SETTINGS = ModelSettings(temperature=0, max_tokens=700)
+# gpt-6-luna on Portkey/Azure only allows function tools on /v1/chat/completions with
+# reasoning_effort='none' (also the cheapest setting: no hidden reasoning tokens).
+SETTINGS = OpenAIChatModelSettings(temperature=0, max_tokens=700, openai_reasoning_effort="none")
 
 # One MCP connection shared by all agents.
 mcp = MCPToolset(PROJECT_DIR / "mcp_server" / "server.py")
