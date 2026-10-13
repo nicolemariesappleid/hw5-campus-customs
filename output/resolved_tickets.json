@@ -1,5 +1,150 @@
 {
-  "status": "pending_real_run",
-  "note": "Not generated yet: the real gpt-6-luna run has not happened (Portkey was unreachable from the build machine). Run `python scripts/full_run.py` with the backend and board running; scripts/finalize_run.py overwrites this file with the real results.",
-  "tickets": []
+  "starting_checking_balance": 3400.0,
+  "ending_checking_balance": 1000.0,
+  "cash_double_check_passed": true,
+  "tickets": [
+    {
+      "id": 101,
+      "final_status": "resolved",
+      "boss_status": "blocked",
+      "outcome": "Cannot fulfill the order now: CC-TEE-WHITE size S has 0 on hand, leaving a shortfall of 1. Restock via Bulldog Print Co could arrive as early as 2026-09-05, but a valid vendor ID is needed before accounting can draft the required PO.",
+      "run_id": "20261013T185935-t101",
+      "agents": {
+        "boss": {
+          "summary": "Cannot fulfill the order now: CC-TEE-WHITE size S has 0 on hand, leaving a shortfall of 1. Restock via Bulldog Print Co could arrive as early as 2026-09-05, but a valid vendor ID is needed before accounting can draft the required PO.",
+          "delegated_to": [
+            "inventory"
+          ],
+          "tools": [
+            "get_ticket"
+          ]
+        },
+        "inventory": {
+          "summary": "Ticket 101 is not fulfillable from current stock: CC-TEE-WHITE size S has 0 on hand for a request of 1, so the shortfall is 1.",
+          "delegated_to": [
+            "accounting"
+          ],
+          "tools": [
+            "check_inventory",
+            "get_ticket",
+            "list_vendors",
+            "get_shop_date"
+          ]
+        },
+        "accounting": {
+          "summary": "Restocking requires a purchase order, costed at the SKU\\u2019s unit cost; the attempted draft could not be created because vendor ID 0 does not exist.",
+          "delegated_to": [],
+          "tools": [
+            "get_pricing",
+            "prepare_purchase_order"
+          ]
+        }
+      },
+      "human_approvals": [],
+      "customer_message_draft": null,
+      "usage": {
+        "requests": 10,
+        "tool_calls": 9,
+        "input_tokens": 8122,
+        "output_tokens": 751
+      }
+    },
+    {
+      "id": 102,
+      "final_status": "resolved",
+      "boss_status": "needs_human_approval",
+      "outcome": "Rent of $2,400 for lease 1 is due September 2, 2026; no payment is recorded. The payment draft is not executed and requires human approval.",
+      "run_id": "20261013T185957-t102",
+      "agents": {
+        "boss": {
+          "summary": "Rent of $2,400 for lease 1 is due September 2, 2026; no payment is recorded. The payment draft is not executed and requires human approval.",
+          "delegated_to": [
+            "facilities"
+          ],
+          "tools": [
+            "get_ticket"
+          ]
+        },
+        "facilities": {
+          "summary": "Lease 1 rent is $2,400, due September 2, 2026\\u20142 days after the August 31 ticket date. No rent payment is recorded; accounting prepared a draft, pending human approval, and did not execute it.",
+          "delegated_to": [
+            "accounting"
+          ],
+          "tools": [
+            "get_lease",
+            "get_shop_date",
+            "find_payments"
+          ]
+        },
+        "accounting": {
+          "summary": "A $2,400 rent payment draft for lease 1 to Elm City Properties was prepared; it is pending human approval and was not executed.",
+          "delegated_to": [],
+          "tools": [
+            "get_cash_balance",
+            "find_payments",
+            "get_shop_date",
+            "prepare_payment"
+          ]
+        }
+      },
+      "human_approvals": [
+        {
+          "approval_id": 1,
+          "type": "payment",
+          "amount": 2400.0,
+          "approved_by": "dashboard",
+          "what": {
+            "kind": "rent",
+            "ref_id": 1,
+            "payee": "Elm City Properties",
+            "amount": 2400.0,
+            "account": "checking",
+            "due_date": "2026-09-02"
+          },
+          "at": "2026-10-13T19:00:14+00:00"
+        }
+      ],
+      "customer_message_draft": null,
+      "usage": {
+        "requests": 9,
+        "tool_calls": 10,
+        "input_tokens": 7153,
+        "output_tokens": 752
+      }
+    },
+    {
+      "id": 103,
+      "final_status": "resolved",
+      "boss_status": "needs_human_approval",
+      "outcome": "Do not apply a bulk discount based on the available information; keep the 20 hoodies at list price ($58 each, $1,160 total) unless a human approves a discount. Accounting reports $22 unit cost and recommends any discounted price remain above cost; no order or payment action is indicated yet.",
+      "run_id": "20261013T190016-t103",
+      "agents": {
+        "boss": {
+          "summary": "Do not apply a bulk discount based on the available information; keep the 20 hoodies at list price ($58 each, $1,160 total) unless a human approves a discount. Accounting reports $22 unit cost and recommends any discounted price remain above cost; no order or payment action is indicated yet.",
+          "delegated_to": [
+            "accounting"
+          ],
+          "tools": [
+            "get_ticket"
+          ]
+        },
+        "accounting": {
+          "summary": "At list price, the 20 hoodies generate $720 profit (62.1% margin). A discount could be considered only if the selling price remains above the $22 unit cost; no specific discount is justified by the available information, so I recommend no discount absent further authorization or a target margin.",
+          "delegated_to": [],
+          "tools": [
+            "get_pricing",
+            "check_margin"
+          ]
+        }
+      },
+      "human_approvals": [],
+      "customer_message_draft": null,
+      "usage": {
+        "requests": 6,
+        "tool_calls": 4,
+        "input_tokens": 4950,
+        "output_tokens": 455
+      }
+    }
+  ]
 }

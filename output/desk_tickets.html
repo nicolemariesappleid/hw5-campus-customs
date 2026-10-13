@@ -29,6 +29,7 @@ code{background:var(--tag);padding:1px 5px;border-radius:4px;font-size:13px}
 .placeholder{background:var(--warn);color:var(--warn-ink);border:1px dashed currentColor;border-radius:10px;padding:16px 18px}
 .placeholder h2{font-size:16px;margin:0 0 4px;color:inherit}
 /*REFL-CSS*/.refl h2{font-size:17px;margin:22px 0 8px}.refl h2:first-of-type{margin-top:14px}.refl p,.refl li{line-height:1.6}.note{background:var(--tag);border-radius:8px;padding:12px 14px;font-size:14px}.redo{display:inline-block;background:#fff1c2;color:#7a5a00;border-radius:999px;padding:0 8px;font-size:12px;font-weight:700}.mini{border-collapse:collapse;font-size:14px;margin:6px 0 10px;width:100%}.mini th,.mini td{border-bottom:1px solid var(--line);padding:6px;text-align:left}.src li{font-size:13px}.muted-note{color:var(--muted);font-size:13px}
+/*RUN-CSS*/.actual{border-left:4px solid var(--accent)}.muted-note{color:var(--muted);font-size:13px}.cash-table{width:100%;border-collapse:collapse;font-size:14px}.cash-table th,.cash-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.cash-table .num{text-align:right;white-space:nowrap}.cash-table .edge td{font-weight:700}.checks{list-style:none;padding:0}.checks li{margin:8px 0}
 </style>
 </head>
 <body>
@@ -77,9 +78,20 @@ code{background:var(--tag);padding:1px 5px;border-radius:4px;font-size:13px}
     </ul>
   </div>
   <!--ACTUAL:101-->
-  <div class="placeholder">
+  <div class="card actual">
     <h2>Actual</h2>
-    <p>To be filled in after the agents run on ticket 101.</p>
+    <h3>Boss's final call</h3>
+    <p><strong>blocked:</strong> Cannot fulfill the order now: CC-TEE-WHITE size S has 0 on hand, leaving a shortfall of 1. Restock via Bulldog Print Co could arrive as early as 2026-09-05, but a valid vendor ID is needed before accounting can draft the required PO.</p>
+    <h3>Agents that worked</h3>
+    <span class="pill">Boss</span><span class="pill">Inventory</span><span class="pill">Accounting</span><span class="pill off">Facilities</span><span class="pill off">Customer Service</span>
+    <h3>Delegations</h3>
+    <ol><li><strong>Boss → Inventory:</strong> Check current stock and availability for SKU CC-TEE-WHITE, size S, qty 1 for ticket 101; report whether fulfillable and any shortfall/restock details.</li><li><strong>Inventory → Accounting:</strong> For ticket 101, SKU CC-TEE-WHITE size S, qty 1 is out of stock. Does restocking require a cost or PO?</li></ol>
+    <h3>MCP tools used</h3>
+    <ul><li><code>get_ticket</code> — Boss (ticket_id=101)</li><li><code>check_inventory</code> — Inventory (sku=CC-TEE-WHITE, size=S)</li><li><code>get_ticket</code> — Inventory (ticket_id=101)</li><li><code>list_vendors</code> — Inventory</li><li><code>get_shop_date</code> — Inventory</li><li><code>get_pricing</code> — Accounting (sku=CC-TEE-WHITE)</li><li><code>prepare_purchase_order</code> — Accounting (vendor_id=0, sku=CC-TEE-WHITE, size=S, qty=1)</li></ul>
+    <h3>Human approvals</h3>
+    <ul><li>None.</li></ul>
+    <p class="muted-note">Ticket status: resolved · run 20261013T185935-t101 · 10 model calls,
+    9 tool calls, 8,873 tokens</p>
   </div>
   <!--/ACTUAL:101-->
 </section>
@@ -116,9 +128,20 @@ code{background:var(--tag);padding:1px 5px;border-radius:4px;font-size:13px}
     </ul>
   </div>
   <!--ACTUAL:102-->
-  <div class="placeholder">
+  <div class="card actual">
     <h2>Actual</h2>
-    <p>To be filled in after the agents run on ticket 102.</p>
+    <h3>Boss's final call</h3>
+    <p><strong>needs human approval:</strong> Rent of $2,400 for lease 1 is due September 2, 2026; no payment is recorded. The payment draft is not executed and requires human approval.</p>
+    <h3>Agents that worked</h3>
+    <span class="pill">Boss</span><span class="pill off">Inventory</span><span class="pill">Accounting</span><span class="pill">Facilities</span><span class="pill off">Customer Service</span>
+    <h3>Delegations</h3>
+    <ol><li><strong>Boss → Facilities:</strong> For lease 1, confirm rent amount, due date, and any payment instructions/status relevant to the notice that rent is due in 2 days (ticket created 2026-08-31).</li><li><strong>Facilities → Accounting:</strong> For lease 1, check available cash and prepare a rent payment draft for $2,400 due 2026-09-02 to Elm City Properties. No rent payment is recorded; do not execute payment. Report payment instructions/status relevant to the notice.</li></ol>
+    <h3>MCP tools used</h3>
+    <ul><li><code>get_ticket</code> — Boss (ticket_id=102)</li><li><code>get_lease</code> — Facilities (lease_id=1)</li><li><code>get_shop_date</code> — Facilities</li><li><code>find_payments</code> — Facilities (kind=rent, ref_id=1)</li><li><code>get_cash_balance</code> — Accounting (account=checking)</li><li><code>find_payments</code> — Accounting (kind=rent, ref_id=1)</li><li><code>get_shop_date</code> — Accounting</li><li><code>prepare_payment</code> — Accounting (kind=rent, ref_id=1, amount=2400, account=checking)</li></ul>
+    <h3>Human approvals</h3>
+    <ul><li>payment of $2,400.00 approved by dashboard</li></ul>
+    <p class="muted-note">Ticket status: resolved · run 20261013T185957-t102 · 9 model calls,
+    10 tool calls, 7,905 tokens</p>
   </div>
   <!--/ACTUAL:102-->
 </section>
@@ -156,16 +179,40 @@ code{background:var(--tag);padding:1px 5px;border-radius:4px;font-size:13px}
     </ul>
   </div>
   <!--ACTUAL:103-->
-  <div class="placeholder">
+  <div class="card actual">
     <h2>Actual</h2>
-    <p>To be filled in after the agents run on ticket 103.</p>
+    <h3>Boss's final call</h3>
+    <p><strong>needs human approval:</strong> Do not apply a bulk discount based on the available information; keep the 20 hoodies at list price ($58 each, $1,160 total) unless a human approves a discount. Accounting reports $22 unit cost and recommends any discounted price remain above cost; no order or payment action is indicated yet.</p>
+    <h3>Agents that worked</h3>
+    <span class="pill">Boss</span><span class="pill off">Inventory</span><span class="pill">Accounting</span><span class="pill off">Facilities</span><span class="pill off">Customer Service</span>
+    <h3>Delegations</h3>
+    <ol><li><strong>Boss → Accounting:</strong> For ticket 103, Yale AI Club requests 20 CC-HOOD-NAVY size M hoodies and a bulk discount. What discount, if any, is financially appropriate, and what approval/payment or invoice steps are needed? Do not execute.</li></ol>
+    <h3>MCP tools used</h3>
+    <ul><li><code>get_ticket</code> — Boss (ticket_id=103)</li><li><code>get_pricing</code> — Accounting (sku=CC-HOOD-NAVY)</li><li><code>check_margin</code> — Accounting (sku=CC-HOOD-NAVY, unit_price=58, qty=20)</li></ul>
+    <h3>Human approvals</h3>
+    <ul><li>None.</li></ul>
+    <p class="muted-note">Ticket status: resolved · run 20261013T190016-t103 · 6 model calls,
+    4 tool calls, 5,405 tokens</p>
   </div>
   <!--/ACTUAL:103-->
 </section>
 
 <section class="panel" id="cash" role="tabpanel">
   <!--CASH-->
-  <div class="placeholder"><h2>Cash</h2><p>For a later problem.</p></div>
+  <div class="card">
+    <h2>Cash: checking account</h2>
+    <table class="cash-table">
+      <thead><tr><th>Ticket</th><th>What changed cash</th><th class="num">Amount</th><th class="num">Balance</th></tr></thead>
+      <tbody>
+        <tr class="edge"><td></td><td>Starting balance (after reset)</td><td></td><td class="num">$3,400.00</td></tr>
+        <tr><td>#101</td><td>No pay or purchase approved for this ticket</td><td class="num">$0.00</td><td class="num">$3,400.00</td></tr><tr><td>#102</td><td>Paid Elm City Properties (rent #1)</td><td class="num">−$2,400.00</td><td class="num">$1,000.00</td></tr><tr><td>#103</td><td>No pay or purchase approved for this ticket</td><td class="num">$0.00</td><td class="num">$1,000.00</td></tr>
+        <tr class="edge"><td></td><td>Ending balance (cash_accounts.checking)</td><td class="num">−$2,400.00</td><td class="num">$1,000.00</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Double check passed</h3>
+    <ul class="checks"><li>✅ Starting balance − approved spending = ending balance in cash_accounts<br><span class="muted-note">$3,400.00 − $2,400.00 = $1,000.00 vs $1,000.00</span></li><li>✅ Approved spending = sum of rows in the payments table<br><span class="muted-note">$2,400.00 vs $2,400.00 (1 rows)</span></li><li>✅ Running balance in this table ends at the database balance<br><span class="muted-note">$1,000.00 vs $1,000.00</span></li></ul>
+  </div>
   <!--/CASH-->
 </section>
 
