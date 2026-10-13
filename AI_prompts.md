@@ -108,7 +108,7 @@ A log of the prompts I typed to the AI, word for word. One section per problem.
 
 **Follow-up prompt:**
 
-> 
+> explain how to do this When you run `python scripts/full_run.py` somewhere Portkey works, it fills those in, plus the Actual and Cash tabs in `desk_tickets.html`. Then commit and push again so the repo has the real results.
 
 ---
 
@@ -132,4 +132,4 @@ A log of the prompts I typed to the AI, word for word. One section per problem.
 
 **Follow-up prompt:**
 
-> 
+> done
